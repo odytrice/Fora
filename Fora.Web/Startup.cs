@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Fora.Infrastructure.Data;
+using Fora.Web.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -22,11 +25,16 @@ namespace Fora.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddDbContext<ForaContext>(o => o.UseSqlServer(Configuration.GetConnectionString("ForaContext")));
+            services.AddAppServices(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            //Automatically Migrate Application
+            app.ApplicationServices.MigrateDb();
+
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
