@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Fora.Domain.Models;
 using Fora.Infrastructure.Data;
 using Fora.Web.Infrastructure;
 using Microsoft.AspNetCore.Builder;
@@ -25,8 +26,9 @@ namespace Fora.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddDbContext<ForaContext>(o => o.UseSqlServer(Configuration.GetConnectionString("ForaContext")));
             services.AddAppServices(Configuration);
+            services.AddDatabase(Configuration);
+            services.AddIdentity<UserModel, string>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,6 +36,7 @@ namespace Fora.Web
         {
             //Automatically Migrate Application
             app.ApplicationServices.MigrateDb();
+            app.UseAuthentication();
 
             if (env.IsDevelopment())
             {

@@ -1,49 +1,87 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Fora.Web</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>@ViewData["Title"] - Pollify.Web</title>
 
     <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />*@
+        <link href="~/css/flatly.css" rel="stylesheet" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link href="~/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <link href="~/css/flatly.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     </environment>
+    <style>
+        code {
+            background-color: #eee;
+            color: inherit;
+        }
+
+        img {
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 2em;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
+                <a href="/" class="navbar-brand"><i class="fa fa-newspaper-o"></i>Fora</a>
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Fora.Web</a>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                </ul>
+            <div class="navbar-collapse collapse" id="navbar-main">
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <ul class="nav navbar-nav">
+                        <li is-active-route asp-controller="home" asp-action="dashboard">
+                            <a asp-area="" asp-controller="home" asp-action="dashboard"><i class="fa fa-dashboard"></i>Dashboard</a>
+                        </li>
+                        @*<li is-active-route asp-controller="poll" asp-action="index">
+                            <a asp-area="" asp-controller="poll" asp-action="index"><i class="fa fa-bar-chart"></i>Polls</a>
+                        </li>*@
+                    </ul>
+
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a asp-area="" asp-controller="account" asp-action="logout"><i class="fa fa-sign-out"></i>Logout</a></li>
+                    </ul>
+                }
             </div>
         </div>
-    </nav>
-    <div class="container body-content">
+    </div>
+
+    <div class="container-fluid content">
         @RenderBody()
-        <hr />
+    </div>
+
+
+    <div class="container-fluid">
         <footer>
-            <p>&copy; 2018 - Fora.Web</p>
+            <div class="row">
+                <div class="col-lg-12">
+
+                </div>
+            </div>
         </footer>
     </div>
+
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
