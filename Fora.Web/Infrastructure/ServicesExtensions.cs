@@ -1,4 +1,5 @@
-﻿using Fora.Domain.Interface;
+﻿using Fora.Domain.Interface.Repositories;
+using Fora.Domain.Managers;
 using Fora.Domain.Models;
 using Fora.Infrastructure.Data;
 using Fora.Infrastructure.Repositories;
@@ -7,10 +8,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Fora.Web.Infrastructure
 {
@@ -22,8 +19,13 @@ namespace Fora.Web.Infrastructure
 
             //Data
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ITopicRepository, TopicRepository>();
 
+            //Managers
             services.AddScoped<UserManager<UserModel>>();
+            services.AddScoped<TopicManager>();
+
+            //Security
             services.AddScoped<IUserStore<UserModel>, UserStore>();
             services.AddScoped<IRoleStore<string>, RoleStore>();
         }

@@ -1,0 +1,68 @@
+﻿@model TopicModel
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="heading">
+    <div class="row">
+        <div class="col-xs-8">
+            <span class="title">
+                <i class="fa fa-file-text-o"></i> @Model.Headline
+            </span>
+        </div>
+        <div class="col-xs-4">
+            <div class="action-bar">
+                @*<a asp-action="create" class="btn btn-warning"><i class="fa fa-edit"></i>Edit Topic</a>*@
+            </div>
+        </div>
+    </div>
+    <hr />
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        @Model.Description
+        <hr />
+        <div class="row">
+            <div class="col-xs-6">
+                <p>By &nbsp; <i class="fa fa-user"></i>@Model.Author.FullName &nbsp; <i class="fa fa-calendar"></i>@Model.DateCreated.ToString("MMM dd, yyyy")</p>
+            </div>
+            <div class="col-xs-6">
+                <p class="text-right"><i class="fa fa-reply"></i>@Model.Replies.Count</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="heading">
+    <div class="row">
+        <div class="col-xs-8">
+            <span class="title">
+                <i class="fa fa-reply"></i> Posts
+            </span>
+        </div>
+        <div class="col-xs-4">
+            <div class="action-bar">
+                <a asp-action="create" asp-controller="post" asp-route-id="@Model.TopicId" class="btn btn-primary"><i class="fa fa-plus"></i>New Post</a>
+            </div>
+        </div>
+    </div>
+    <hr />
+</div>
+@if (Model.Replies != null && Model.Replies.Any())
+{
+    foreach (var post in Model.Replies)
+    {
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p>@post.Body</p>
+                <p class="text-right"><i class="fa fa-reply"></i>@post.User?.FullName</p>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="empty">
+        <p>There are no Responses to this Topic</p>
+    </div>
+}

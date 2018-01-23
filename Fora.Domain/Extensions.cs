@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Fora
@@ -47,6 +48,32 @@ namespace Fora
                 }
             }
             return destination;
+        }
+
+        public static PagedList<T> ToPagedList<T>(this IQueryable<T> source, int pageIndex, int pageSize)
+        {
+            if (pageIndex == 0) pageIndex = 1;
+            var count = source.Count();
+            var items = source.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            return new PagedList<T>(items, count, pageIndex, pageSize);
+        }
+
+        public static PagedList<T> ToPagedList<T>(this IEnumerable<T> source, int pageIndex, int pageSize)
+        {
+            if (pageIndex == 0) pageIndex = 1;
+            var count = source.Count();
+            var items = source.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            return new PagedList<T>(items, count, pageIndex, pageSize);
+        }
+
+        public static PagedList<U> Map<T, U>(this PagedList<T> pagedList, Func<T, U> projection)
+        {
+            var list = new List<U>();
+            foreach (var item in pagedList)
+            {
+                list.Add(projection(item));
+            }
+            return new PagedList<U>(list, pagedList.Total, pagedList.PageIndex, pagedList.PageSize);
         }
     }
 }

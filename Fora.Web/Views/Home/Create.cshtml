@@ -1,0 +1,29 @@
+﻿@model Fora.Domain.Models.TopicModel
+@{
+    ViewData["Title"] = "Create";
+}
+<h2>Create Topic</h2>
+<hr />
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Headline" class="control-label"></label>
+                <input asp-for="Headline" class="form-control" placeholder="Enter Headline" />
+                <span asp-validation-for="Headline" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control" rows="15" placeholder="Enter Description"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group text-right">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index" class="btn btn-default"><i class="fa fa-arrow-left"></i>Back</a>
+</div>

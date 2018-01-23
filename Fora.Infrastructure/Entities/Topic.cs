@@ -14,6 +14,6 @@ namespace Fora.Infrastructure.Entities
         public string AuthorId { get; set; }
         public User Author { get; set; }
         public DateTime DateCreated { get; set; } = DateTime.Now;
-        public ICollection<Post> Comments { get; set; } = new HashSet<Post>();
+        public ICollection<Post> Replies { get; set; } = new HashSet<Post>();
     }
 }

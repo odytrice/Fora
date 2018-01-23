@@ -250,3 +250,108 @@ footer {
 .fa{
     margin-right:5px;
 }
+
+
+/** Clickable Pane **/
+.pane {
+    border-radius: 5px;
+    padding: 30px 30px;
+    margin: 10px 0px;
+    text-align: center;
+}
+
+    .pane h4 {
+        font-size: 18px;
+    }
+
+    .pane i.fa {
+        line-height: 1em;
+        margin: 10px;
+    }
+
+.pane-sm {
+    border-radius: 5px;
+    padding: 30px;
+    text-align: center;
+}
+
+.pane-hover:hover {
+    background-color: rgba(217, 83, 79, 0.17);
+    cursor: pointer;
+}
+
+.cursor-pointer {
+    cursor: pointer !important;
+}
+
+.fa {
+    margin-right: 7px;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+/** Heading **/
+.heading {
+}
+
+    .heading hr {
+        margin-top: 0px;
+        margin-bottom: 15px;
+    }
+
+    .heading .title, .heading .action-bar {
+        font-size: 30px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    .heading .title {
+        white-space: nowrap;
+        -ms-text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        width: 100%;
+        display: block;
+        overflow: hidden;
+    }
+
+    .heading .action-bar {
+        margin-top: 15px;
+        text-align: right;
+    }
+
+.sub-heading {
+}
+
+    .sub-heading hr {
+        margin-top: 5px;
+        margin-bottom: 10px;
+    }
+
+    .sub-heading .title, .sub-heading .action-bar {
+        font-size: 20px;
+        margin-top: 15px;
+        margin-bottom: 0px;
+    }
+
+    .sub-heading .title {
+        white-space: nowrap;
+        -ms-text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        width: 100%;
+        display: block;
+        overflow: hidden;
+    }
+
+    .sub-heading .action-bar {
+        margin-top: 13px;
+        text-align: right;
+    }
+
+.empty {
+    padding: 100px 0px;
+    text-align: center;
+}

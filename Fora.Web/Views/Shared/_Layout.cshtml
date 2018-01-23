@@ -50,17 +50,25 @@
                 @if (User.Identity.IsAuthenticated)
                 {
                     <ul class="nav navbar-nav">
-                        <li is-active-route asp-controller="home" asp-action="dashboard">
-                            <a asp-area="" asp-controller="home" asp-action="dashboard"><i class="fa fa-dashboard"></i>Dashboard</a>
+                        <li is-active-route asp-controller="home">
+                            <a asp-area="" asp-controller="home" asp-action="index"><i class="fa fa-file-text"></i>Posts</a>
                         </li>
                         @*<li is-active-route asp-controller="poll" asp-action="index">
-                            <a asp-area="" asp-controller="poll" asp-action="index"><i class="fa fa-bar-chart"></i>Polls</a>
-                        </li>*@
+                                <a asp-area="" asp-controller="poll" asp-action="index"><i class="fa fa-bar-chart"></i>Polls</a>
+                            </li>*@
                     </ul>
 
 
                     <ul class="nav navbar-nav navbar-right">
+                        <li><a style="text-transform:lowercase">@User.Identity.Name</a></li>
                         <li><a asp-area="" asp-controller="account" asp-action="logout"><i class="fa fa-sign-out"></i>Logout</a></li>
+                    </ul>
+                }
+                else
+                {
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a asp-area="" asp-controller="account" asp-action="login"><i class="fa fa-sign-in"></i>Login</a></li>
                     </ul>
                 }
             </div>

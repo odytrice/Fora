@@ -1,1 +1,40 @@
-﻿<h1>Hello</h1>
+﻿@model PagedList<TopicModel>
+<div class="heading">
+    <div class="row">
+        <div class="col-xs-8">
+            <span class="title">
+                <i class="fa fa-file-text-o"></i> Topics
+            </span>
+        </div>
+        <div class="col-xs-4">
+            <div class="action-bar">
+                <a asp-action="create" class="btn btn-primary"><i class="fa fa-plus"></i>New Topic</a>
+            </div>
+        </div>
+    </div>
+    <hr />
+</div>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        @if (Model != null && Model.Any())
+        {
+            foreach (var topic in Model)
+            {
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <h4><a asp-action="details" asp-route-id="@topic.TopicId">@topic.Headline</a></h4>
+                        <hr />
+                        <p>@topic.Description</p>
+                        <p class="text-right"><i class="fa fa-user"></i>@topic.Author.FullName &nbsp; <i class="fa fa-comments"></i>@topic.Replies.Count</p>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="empty">
+                <p>There are no Topics</p>
+            </div>
+        }
+    </div>
+</div>

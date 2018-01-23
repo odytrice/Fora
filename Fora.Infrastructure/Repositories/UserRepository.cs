@@ -1,12 +1,10 @@
-﻿using Fora.Domain.Interface;
-using Fora.Domain.Models;
+﻿using Fora.Domain.Models;
 using Fora.Infrastructure.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
+using Fora.Domain.Interface.Repositories;
 
 namespace Fora.Infrastructure.Repositories
 {
